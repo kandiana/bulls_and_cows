@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Быки и коровы</title>
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+
+  <body>
+    <main>
+      <section class="game container">
+        <h1 class="game__title">Быки и коровы</h1>
+        <div class="menu" id="menu">
+          <h2 class="title">Меню</h2>
+          <button class="button" id="rules-button">Правила игры</button>
+          <button class="button" id="settings-button">Настройки</button>
+          <button class="button" id="start-button">Начать игру</button>
+        </div>
+
+        <div class="rules hidden" id="rules">
+          <h2 class="title">Правила игры</h2>
+          <p class="text">
+            Компьютер загадывает n-значное число с неповторяющимися цифрами. Ваша задача его
+            отгадать.
+          </p>
+          <p class="text">
+            За ход можно назвать любое n-значное число также с неповторяющимися цифрами. В ответ Вы
+            увидите, сколько "быков" и сколько "коров" в Вашем числе.
+          </p>
+          <p class="text">
+            "Быком" называется цифра Вашего числа, которая совпадает и по позиции, и по значению с
+            цифрой в загаданном числе.
+          </p>
+          <p class="text">
+            "Коровой" называется цифра Вашего числа, которая присутствует в загаданном, но стоит на
+            другом месте.
+          </p>
+          <p class="text">
+            По стандартным правилам в игре загадывается и отгадывается четырехзначное число, однако
+            в настройках можно изменить количество цифр в числе от 2 до 5.
+          </p>
+          <button class="button" id="rules-back-button">Назад</button>
+        </div>
+
+        <div class="settings hidden" id="settings">
+          <h2 class="title">Настройки</h2>
+          <ul class="settings__list">
+            <li class="settings__item">
+              <p class="settings__item-label">Количество цифр:</p>
+              <p class="settings__item-value" id="digits">4</p>
+              <div class="settings__arrows" id="digits-arrows">
+                <div class="settings__arrow settings__arrow_up" id="digits-up"></div>
+                <div class="settings__arrow settings__arrow_down" id="digits-down"></div>
+              </div>
+            </li>
+
+            <li class="settings__item">
+              <p class="settings__item-label">Уровень сложности:</p>
+              <p class="settings__item-value" id="difficulty">Средний</p>
+              <div class="settings__arrows" id="difficulty-arrows">
+                <div class="settings__arrow settings__arrow_up" id="difficulty-up"></div>
+                <div class="settings__arrow settings__arrow_down" id="difficulty-down"></div>
+              </div>
+              <p class="value-description" id="level-description">
+                Нет подсказок, количество ходов не ограничено
+              </p>
+            </li>
+          </ul>
+          <div>
+            <button class="button" id="reset-settings">Сбросить настройки</button>
+            <button class="button" id="settings-back-button">Назад</button>
+          </div>
+        </div>
+
+        <div class="ingame hidden" id="play">
+          <h2 class="title visually-hidden">Игра</h2>
+          <div class="ingame-input">
+            <h3 class="subtitle visually-hidden">Ввод</h3>
+            <div class="ingame-output__hints" id="hints">
+              <h3 class="subtitle">Возможные цифры</h3>
+              <div class="ingame-output__hints-content" id="hints-content"></div>
+            </div>
+            <p class="error-message" id="error-message"></p>
+            <input type="number" class="input" id="player-input" />
+            <button class="button" id="check-answer-button">Проверить</button>
+            <button class="button give-up__button" id="give-up-button">Сдаться</button>
+          </div>
+          <div class="ingame-output">
+            <h3 class="subtitle">Предыдущие попытки</h3>
+            <ul class="ingame-output__list" id="previous-tries-table"></ul>
+          </div>
+        </div>
+
+        <div class="game-end hidden" id="end">
+          <h2 class="title visually-hidden">Конец игры</h2>
+          <div class="end-game__line" id="end-game-text"></div>
+          <div class="wrapper">
+            <button class="button" id="play-again-button">Сыграть еще раз</button>
+            <button class="button" id="back-to-menu-button">Вернуться в меню</button>
+          </div>
+          <div class="ingame-output" id="game-data">
+            <h3 class="subtitle">История игры</h3>
+            <ul class="ingame-output__list" id="tries-table"></ul>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>

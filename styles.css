@@ -1,0 +1,301 @@
+html {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  display: contents;
+  font-family: Arial, Helvetica, sans-serif;
+  cursor: default;
+}
+
+main {
+  display: contents;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type='number'],
+input[type='number']:hover,
+input[type='number']:focus {
+  appearance: none;
+  -moz-appearance: textfield;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  white-space: nowrap;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+}
+
+/*************************************/
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+}
+
+.subtitle {
+  text-align: center;
+}
+
+.text {
+  margin: 0 0 10px;
+  text-align: justify;
+  text-indent: 5%;
+}
+
+.input {
+  max-width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border: 2px solid gray;
+  border-radius: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.input:focus {
+  outline: none;
+  border: 2px solid black;
+}
+
+.button {
+  min-width: 200px;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: darkgrey;
+}
+
+.button:focus {
+  outline: none;
+}
+
+@media (max-width: 480px) {
+  .button {
+    display: block;
+    margin: 10px auto;
+  }
+}
+
+/********************/
+
+.game {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.game__title {
+  text-align: center;
+  text-shadow: 1px 1px 2px gray;
+}
+
+/********************/
+
+.rules {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+}
+
+/********************/
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings__list {
+  margin-bottom: 40px;
+  padding: 0;
+  list-style: none;
+}
+
+.settings__item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 200px auto 10px;
+  grid-template-areas:
+    'a b c'
+    'd d d';
+  align-items: center;
+}
+
+@media (max-width: 480px) {
+  .settings__item {
+    grid-template-columns: 170px auto 10px;
+  }
+}
+
+.settings__item-label {
+  grid-area: a;
+  margin-right: 10px;
+}
+
+.settings__item-value {
+  grid-area: b;
+  width: 80px;
+  margin-right: 10px;
+  padding: 5px 15px;
+  border: 2px solid black;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.settings__arrows {
+  grid-area: c;
+  width: 10px;
+}
+
+.settings__arrow {
+  border: 10px solid transparent;
+  cursor: pointer;
+}
+
+.settings__arrow_up {
+  margin-bottom: 5px;
+  border-bottom: 10px solid lightgray;
+}
+
+.settings__arrow_up:hover {
+  border-bottom: 10px solid gray;
+}
+
+.settings__arrow_down {
+  border-top: 10px solid lightgray;
+}
+
+.settings__arrow_down:hover {
+  border-top: 10px solid gray;
+}
+
+.value-description {
+  position: absolute;
+  top: -20px;
+  display: none;
+  grid-area: d;
+  justify-self: center;
+  font-size: 14px;
+  text-align: center;
+  color: darkblue;
+}
+
+.settings__item-value:hover ~ .value-description {
+  display: block;
+}
+
+/********************/
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/********************/
+
+.ingame {
+  display: flex;
+  justify-content: space-around;
+  flex-grow: 1;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .ingame {
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+
+.ingame-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 20px;
+}
+
+.error-message {
+  height: 20px;
+  text-align: center;
+  color: red;
+}
+
+.give-up__button {
+  margin-top: 50px;
+}
+
+/********************/
+
+.ingame-output__list {
+  padding: 0;
+  list-style: none;
+}
+
+.ingame-output__line {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr 1fr;
+  column-gap: 3px;
+  padding: 0 3px 3px;
+  background-color: darkgray;
+  text-align: center;
+}
+
+.ingame-output__line:first-child {
+  padding: 3px;
+}
+
+.ingame-output__cell {
+  margin: 0;
+  padding: 10px;
+  background-color: white;
+}
+
+.ingame-output__hints {
+  display: none;
+}
+
+/********************/
+
+.game-end {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/********************/
+
+.hidden {
+  display: none;
+}
