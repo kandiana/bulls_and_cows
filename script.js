@@ -52,6 +52,7 @@ const difficultyLevels = {
 
 const DEFAULT_NUMBER_OF_DIGITS = 4;
 
+let possibleNumbers = [];
 const possibleDigits = [];
 
 const gameState = {
@@ -188,6 +189,7 @@ function startGame() {
   for (let i = 1; i < gameState.numberOfDigits; i++) {
     possibleDigits[i] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   }
+  generateAllPossibleNumbers(gameState.numberOfDigits);
 
   if (gameState.difficulty === difficultyLevels.levels[0]) {
     fillHints();
@@ -211,7 +213,9 @@ function guess() {
   );
   gameState.numberOfTriesUsed += 1;
 
-  updatePossibleDigits(bullsAndCows[0], bullsAndCows[1], playerInputNumber);
+  // updatePossibleDigits(bullsAndCows[0], bullsAndCows[1], playerInputNumber);
+  updatePossibleNumbers(bullsAndCows[0], bullsAndCows[1], playerInputNumber);
+  updatePossibleDigits2(gameState.numberOfDigits);
 
   addLineToPreviousTriesTable([
     gameState.numberOfTriesUsed,
@@ -327,9 +331,52 @@ function clearLastGameData() {
   hintsBlock.style.display = 'none';
   previousTriesTable.textContent = '';
   triesTable.textContent = '';
+  possibleNumbers = [];
 
   for (item of possibleDigits) {
     item = [];
+  }
+}
+
+function generateAllPossibleNumbers(numberOfDigits) {
+  for (let i = 10 ** (numberOfDigits - 1); i < 10 ** numberOfDigits; i++) {
+    const differentDigits = new Set(i.toString().split(''));
+    if (differentDigits.size === numberOfDigits) {
+      possibleNumbers.push(i);
+    }
+  }
+}
+
+function updatePossibleNumbers(bulls, cows, inputNumber) {
+  const newPossibleNumbers = [];
+  for (const number of possibleNumbers) {
+    const bullsAndCows = compareNumbers(
+      number.toString().split('').map(Number),
+      inputNumber.split('').map(Number)
+    );
+    if (bullsAndCows[0] === bulls && bullsAndCows[1] === cows) {
+      newPossibleNumbers.push(number);
+    }
+  }
+  possibleNumbers = newPossibleNumbers;
+}
+
+function updatePossibleDigits2(numberOfDigits) {
+  const newPossibleDigits = [];
+
+  for (let i = 0; i < numberOfDigits; i++) {
+    newPossibleDigits[i] = new Set();
+  }
+
+  for (const number of possibleNumbers) {
+    const digits = number.toString().split('');
+    for (const i in digits) {
+      newPossibleDigits[i].add(digits[i]);
+    }
+  }
+
+  for (const i in newPossibleDigits) {
+    possibleDigits[i] = Array.from(newPossibleDigits[i]).sort();
   }
 }
 
